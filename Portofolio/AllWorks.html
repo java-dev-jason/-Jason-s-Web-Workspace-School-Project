@@ -4,6 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("in-view");
+                    }
+                });
+            }, {
+                threshold: 0.1 // schon leicht im Viewport reicht
+            });
+        
+            document.querySelectorAll('.SeeAbleWork').forEach(el => {
+                observer.observe(el);
+            });
+        });
+        </script>
+
     <style>
 
        .gradient-text{
@@ -26,13 +45,15 @@
         }
 
         a{
-            color:rgb(255, 255, 255);
+            color:rgb(0, 0, 0);
             text-decoration: none;
         }
 
         .ButtonBack{
-            background: linear-gradient(90deg, rgb(19, 70, 90) 0%, rgb(151, 36, 227) 50%, rgb(9, 91, 162) 100%);
-            color:white;
+            border: 2px solid;
+            border-color: black;
+            background-color: transparent;
+            color:black;
             width: 100px;
             height: 30px;
             text-align: center;
@@ -61,6 +82,7 @@
         }
 
         img{
+            box-shadow: 2px 1px 3px rgb(97, 97, 97);
             max-width: 300px;
             position:relative;
             border-radius: 20px;
@@ -80,8 +102,10 @@
             margin-bottom: 100px;
         }
 
-        #Work{
+        .Work{
             margin-top:100px;
+            transform-style: preserve-3d;
+            perspective: 1px;
         }
 
         .Work1{
@@ -98,6 +122,17 @@
             margin-left:50px;
         }
 
+        .SeeAbleWork {
+            transform: translateZ(0);
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .SeeAbleWork.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
     </style>
 </head>
 <body>
@@ -107,7 +142,7 @@
     <h1>All <span class="gradient-text">Works</span></h1>
 
     <div class="Works">
-        <div class="Work1" id="Work">
+        <div class="Work" id="PwAnalyzer">
             <div class="SeeAbleWork">
                 <img src="/Pics/Portofolio1.png" alt="PicOfHowItWorks">
                 <div class="WorkText">
@@ -124,7 +159,7 @@
                     </p>
                 </div>
             </div>
-            <details>
+            <details class="SeeAbleWork">
                 <summary>Mehr erfahren</summary>
                 <div>
                   <ul>
@@ -227,7 +262,7 @@
             </details>
         </div>
 
-        <div class="Work2" id="Work">
+        <div class="Work" id="HashCracker">
             <div class="SeeAbleWork">
                 <img src="/Pics/Portofolio2.png" alt="PicOfHowItWorks">
                 <div class="WorkText">
@@ -246,7 +281,7 @@
                     </p>
                 </div>
             </div>
-            <details>
+            <details class="SeeAbleWork">
                 <summary>Mehr erfahren</summary>
                 <div>
                   <ul>
@@ -356,7 +391,7 @@
             </details>
         </div>
 
-        <div class="Work3" id="Work">
+        <div class="Work" id="PwManager">
             <div class="SeeAbleWork">
                 <img src="/Pics/Portofolio3.png" alt="PicOfHowItWorks">
                 <div class="WorkText">
@@ -372,7 +407,7 @@
                     </p>
                 </div>
             </div>
-            <details>
+            <details class="SeeAbleWork">
                 <summary>Mehr erfahren</summary>
                 <div>
                   <ul>
@@ -455,7 +490,7 @@
             </details>
         </div>
 
-        <div class="Work4" id="Work">
+        <div class="Work" id="WWM">
             <div class="SeeAbleWork">
                 <img src="/Pics/Portofolio4.png" alt="PicOfHowItWorks">
                 <div class="WorkText">
@@ -468,7 +503,7 @@
                     </p>
                 </div>
             </div>
-            <details>
+            <details class="SeeAbleWork">
                 <summary>Mehr erfahren</summary>
                 <div>
                   <ul>
@@ -515,7 +550,7 @@
             </details>
         </div>
 
-        <div class="Work5" id="Work">
+        <div class="Work" id="WorkFlowTimer">
             <div class="SeeAbleWork">
                 <img src="/Pics/Portofolio5.png" alt="PicOfHowItWorks">
                 <div class="WorkText">
@@ -527,7 +562,7 @@
                     <p>Work & break intervals (customizable) , Pause & continue functionality</p>
                 </div>
             </div>
-            <details>
+            <details class="SeeAbleWork">
                 <summary>Mehr erfahren</summary>
                 <div>
                   <ul>
@@ -582,7 +617,7 @@
             </details>
         </div>
 
-        <div class="Work6" id="Work">
+        <div class="Work" id="SmokingSimulator">
             <div class="SeeAbleWork">
                 <img src="/Pics/Portofolio6.png" alt="PicOfHowItWorks">
                 <div class="WorkText">
@@ -595,7 +630,7 @@
                         Smoke cigarettes turn-by-turn, visualized with ASCII-style rendering.</p>
                 </div>
             </div>
-            <details>
+            <details class="SeeAbleWork">
                 <summary>Mehr erfahren</summary>
                 <div>
                   <ul>
@@ -669,6 +704,48 @@
                     </li>
                   </ul>
                   
+                </div>
+            </details>
+        </div>
+
+        <div class="Work" id="Casino">
+            <div class="SeeAbleWork">
+                <img src="/Pics/Portofolio7.PNG" alt="PicOfHowItWorks">
+                <div class="WorkText">
+                    <h2>🎰Java<span class="gradient-text">Casino</span></h2>
+                    <p>A terminal-based casino simulation written in Java.
+                    Includes two main games: Blackjack and Slot Machines, with full rule logic and a customizable options menu
+                    </p>
+                    <p>🎮 Games Included</p>
+                    <p>Blackjack: Full rules, including customizable target score (e.g. 21), ace behavior, and betting limits.</p>
+                    <p>Slot Machine: Random symbol combinations with win evaluation and payout scaling.</p>
+                </div>
+            </div>
+            <details class="SeeAbleWork">
+                <summary>Mehr erfahren</summary>
+                <div>
+                  <ul>
+                    <h3>🧠 Features</h3>
+                    <li>
+                        Global account balance handling                    
+                    </li>
+                    <li>
+                        Configurable game options (min/max bet, points, ace behavior)                    </li>
+                    <li>
+                        Menu navigation system
+                    </li>
+                    <li>
+                        Replayable rounds with stat reset
+                    </li>
+                  </ul>
+
+                  <hr>
+                  <ul>
+                    <h3>👨‍💻 About</h3>
+                    <li>
+                        Developed by Jason Belzek to simulate casino logic and strengthen OOP, Java structure, and game rule handling.
+                    </li>
+                  </ul>     
                 </div>
             </details>
         </div>
